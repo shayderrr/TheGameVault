@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="https://ssl.gstatic.com/docs/doclist/images/drive_2022q3_32dp.png" type="image/png" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ethanytangcodes/art@main/style.css">
+  <link id="theme-style" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ethanytangcodes/art@main/light-theme.css">
+  <title>Home | Drive</title>
+</head>
+<body>
+  <div class="header" style="height: 390px; text-align: center; padding-top: 30px;">
+    <h1 style="margin-top: 0;" id="h1ani"><b>G4MES</b></h1>
+    <h3 style="margin-top: 0;">made by ethan</h3>
+  </div>
+  <hr>
+  <div id="searchContainer" style="width: 50%; margin: 0 auto;">
+    <input type="text" id="searchInput" placeholder="Type here to search g4mes..." style="width: 100%;">
+  </div>
+  <div id="favorites">
+    <h2>Favorites</h2>
+    <div id="favoritesCards" style="display: flex; flex-wrap: wrap;">
+      <!-- Favorited game cards will be added here by JavaScript -->
+    </div>
+  </div>
+  <hr>
+  <div id="searchResults">
+    <script type="text/html" id="searchResultTemplate">
+      <a href="#" class="game-link" data-link="{{link}}" style="text-decoration: none">
+        <div class="rndrec">
+          <img src="{{image}}" alt="G4mes loading..." width="200" height="199" loading="lazy">
+          {{title}}
+        </div>
+      </a>
+    </script>
+  </div>
+  <hr>
+  <div id="main" style="margin-bottom: 50px;">
+    <div id="cards" style="display: flex; flex-wrap: wrap;">
+      <!-- Game cards will be added here by JavaScript -->
+    </div>
+  </div>
+
+  <script>
+document.addEventListener('DOMContentLoaded', async () => {
+  const searchInput = document.getElementById('searchInput');
+  const searchResults = document.getElementById('searchResults');
+  const favoritesCards = document.getElementById('favoritesCards');
+  const searchResultTemplate = document.getElementById('searchResultTemplate').innerHTML;
+
+  let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+  let data = [];
+
+  const saveFavorites = () => localStorage.setItem('favorites', JSON.stringify(favorites));
+  const isFavorited = (title) => favorites.includes(title);
+
+  const toggleFavorite = (title) => {
+    if (isFavorited(title)) {
+      favorites = favorites.filter(fav => fav !== title);
+    } else {
+      favorites.push(title);
+    }
+    saveFavorites();
+    renderFavorites();
+    renderSearchResults(searchInput.value.trim());
+  };
+
+  // Function to fix relative paths in HTML content
+  function fixRelativePaths(htmlContent, gameLink) {
+    // Get the base path of the game (e.g., "projects/game/")
+    const pathParts = gameLink.split('/');
+    pathParts.pop(); // Remove index.html
+    const basePath = pathParts.join('/');
+    const cdnBase = `https://cdn.jsdelivr.net/gh/ethanytangcodes/art@main/${basePath}`;
+    
+    // Fix src attributes (scripts, images, iframes)
+    htmlContent = htmlContent.replace(/src=["'](?!http|\/\/|data:)([^"']+)["']/gi, (match, path) => {
+      // Handle paths that start with ./ or ../
+      if (path.startsWith('./')) {
+        path = path.substring(2);
+      } else if (path.startsWith('../')) {
+        // Handle parent directory references
+        const upLevels = (path.match(/\.\.\//g) || []).length;
+        path = path.replace(/\.\.\//g, '');
+        const basePathParts = basePath.split('/');
+        for (let i = 0; i < upLevels; i++) {
+          basePathParts.pop();
+        }
+        return `src="https://cdn.jsdelivr.net/gh/ethanytangcodes/art@main/${basePathParts.join('/')}/${path}"`;
+      }
+      return `src="${cdnBase}/${path}"`;
+    });
+    
+    // Fix href attributes (stylesheets, links)
+    htmlContent = htmlContent.replace(/href=["'](?!http|\/\/|#|mailto:|javascript:)([^"']+)["']/gi, (match, path) => {
+      // Skip anchor links and special protocols
+      if (path.startsWith('./')) {
+        path = path.substring(2);
+      } else if (path.startsWith('../')) {
+        const upLevels = (path.match(/\.\.\//g) || []).length;
+        path = path.replace(/\.\.\//g, '');
+        const basePathParts = basePath.split('/');
+        for (let i = 0; i < upLevels; i++) {
+          basePathParts.pop();
+        }
+        return `href="https://cdn.jsdelivr.net/gh/ethanytangcodes/art@main/${basePathParts.join('/')}/${path}"`;
+      }
+      return `href="${cdnBase}/${path}"`;
+    });
+    
+    // Fix CSS url() references
+    htmlContent = htmlContent.replace(/url\(["']?(?!http|\/\/|data:)([^"')]+)["']?\)/gi, (match, path) => {
+      if (path.startsWith('./')) {
+        path = path.substring(2);
+      } else if (path.startsWith('../')) {
+        const upLevels = (path.match(/\.\.\//g) || []).length;
+        path = path.replace(/\.\.\//g, '');
+        const basePathParts = basePath.split('/');
+        for (let i = 0; i < upLevels; i++) {
+          basePathParts.pop();
+        }
+        return `url("https://cdn.jsdelivr.net/gh/ethanytangcodes/art@main/${basePathParts.join('/')}/${path}")`;
+      }
+      return `url("${cdnBase}/${path}")`;
+    });
+    
+    // Add base tag to help with any remaining relative paths
+    if (!htmlContent.includes('<base')) {
+      htmlContent = htmlContent.replace(/<head>/i, `<head>\n<base href="${cdnBase}/">`);
+    }
+    
+    return htmlContent;
+  }
+
+  // Function to fetch and open game in new window
+  async function openGameInNewWindow(gameLink) {
+    let loadingWindow = null;
+    try {
+      // Open new window first
+      loadingWindow = window.open('about:blank', '_blank');
+      if (!loadingWindow) {
+        alert('Please allow pop-ups for this site to play games!');
+        return;
+      }
+      
+      loadingWindow.document.write('<html><body style="display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: Arial; background: #1a1a2e; color: white;"><h2>Loading game...</h2></body></html>');
+      
+      // Convert the link to CDN URL if it's a relative path
+      let cdnUrl = gameLink;
+      if (!gameLink.startsWith('http')) {
+        cdnUrl = `https://cdn.jsdelivr.net/gh/ethanytangcodes/art@main/${gameLink}`;
+      }
+      
+      // Fetch the HTML file
+      const response = await fetch(cdnUrl);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch game: ${response.status}`);
+      }
+      
+      let htmlContent = await response.text();
+      
+      // Fix all relative paths in the HTML
+      htmlContent = fixRelativePaths(htmlContent, gameLink);
+      
+      // Write the modified HTML content to the new window
+      loadingWindow.document.open();
+      loadingWindow.document.write(htmlContent);
+      loadingWindow.document.close();
+      
+    } catch (error) {
+      console.error('Error loading game:', error);
+      alert('Failed to load game. Please try again.');
+      if (loadingWindow && !loadingWindow.closed) {
+        loadingWindow.close();
+      }
+    }
+  }
+
+  const renderFavorites = () => {
+    favoritesCards.innerHTML = '';
+    if (!favorites.length) {
+      favoritesCards.innerHTML = '<p>No favorites yet.</p>';
+      return;
+    }
+
+    favorites.forEach(title => {
+      const game = data.find(g => g.title === title);
+      if (!game) return;
+
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = searchResultTemplate.replace(/{{(.*?)}}/g, (match, key) => game[key.trim()]);
+      const link = wrapper.querySelector('a');
+      
+      // Add click handler to fetch and render game
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const gameLink = link.getAttribute('data-link');
+        openGameInNewWindow(gameLink);
+      });
+
+      const star = document.createElement('span');
+      star.className = 'star favorited';
+      star.textContent = '★';
+      star.style.color = 'yellow';
+      star.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleFavorite(title);
+      });
+
+      link.appendChild(star);
+      favoritesCards.appendChild(wrapper.firstElementChild);
+    });
+  };
+
+  const renderSearchResults = (searchTerm = '') => {
+    searchResults.innerHTML = '';
+    const filteredResults = data.filter(item => item.title.toLowerCase().includes(searchTerm.toLowerCase()));
+
+    filteredResults.forEach(result => {
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = searchResultTemplate.replace(/{{(.*?)}}/g, (match, key) => result[key.trim()]);
+      const link = wrapper.querySelector('a');
+      
+      // Add click handler to fetch and render game
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const gameLink = link.getAttribute('data-link');
+        openGameInNewWindow(gameLink);
+      });
+
+      const star = document.createElement('span');
+      star.className = `star ${isFavorited(result.title) ? 'favorited' : 'not-favorited'}`;
+      star.textContent = '★';
+      star.style.color = isFavorited(result.title) ? 'yellow' : 'gray';
+      star.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleFavorite(result.title);
+      });
+
+      link.appendChild(star);
+      searchResults.appendChild(wrapper.firstElementChild);
+    });
+  };
+
+  // Load games from JSON
+  try {
+    const response = await fetch('https://cdn.jsdelivr.net/gh/ethanytangcodes/art@main/games.json');
+    data = await response.json();
+    
+    // Process images to use CDN URLs
+    data = data.map(game => ({
+      ...game,
+      image: game.image.startsWith('http') ? game.image : `https://cdn.jsdelivr.net/gh/ethanytangcodes/art@main/${game.image}`
+    }));
+    
+    renderSearchResults();
+    renderFavorites();
+  } catch (err) {
+    console.error('Error loading games:', err);
+    searchResults.innerHTML = '<p style="color: red; padding: 20px;">Error loading games. Please try again later.</p>';
+  }
+
+  // Debounce search input
+  let timeout;
+  searchInput.addEventListener('input', () => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => renderSearchResults(searchInput.value.trim()), 200);
+  });
+});
+  </script>
+</body>
+</html>
