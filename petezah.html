@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Content</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+iframe {
+  height: 100%;
+  width: 100%;
+  border: none;
+  display: block;
+}
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  transition: opacity 0.3s ease;
+}
+#overlay.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+.message-box {
+  background: black;
+  color: black;
+  padding: 30px 40px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 400px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+.message-box h2 {
+  margin-bottom: 15px;
+  font-size: 24px;
+  color: white;
+  font-family: Arial;
+}
+.message-box p {
+  margin-bottom: 20px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: white;
+  font-family: Arial;
+}
+.key {
+  display: inline-block;
+  background: #333;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-family: monospace;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0 5px;
+}
+button {
+  background: #4285f4;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+button:hover {
+  background: #3367d6;
+}
+</style>
+</head>
+<body>
+
+<div id="overlay">
+  <div class="message-box">
+    <h2>🚀 Stealth Mode Available</h2>
+    <p>Press the <span class="key">`</span> key (backtick)<br>to open in disguise mode</p>
+    <button onclick="hideOverlay()">Got it!</button>
+  </div>
+</div>
+
+<iframe id="contentFrame" src="https://xn--ihq5kyjq4g7sag8fqdx43ec0foviqkb496avmto8fnp5i2kel90ao1ay73r.bostoncareercounselor.com/pages/g.html"></iframe>
+
+<script>
+function hideOverlay() {
+  document.getElementById('overlay').classList.add('hide');
+}
+
+// Auto-hide after 6 seconds
+setTimeout(hideOverlay, 6000);
+
+// The actual key detection
+window.addEventListener('keydown', function(e) {
+  console.log('Key pressed:', e.key, 'KeyCode:', e.keyCode, 'Code:', e.code);
+  
+  // Multiple ways to detect backtick
+  if (e.key === '`' || e.keyCode === 192 || e.code === 'Backquote' || e.which === 192) {
+    e.preventDefault();
+    e.stopPropagation();
+    launchAboutBlank();
+  }
+});
+
+function launchAboutBlank() {
+  console.log('Launching about:blank window...');
+  
+  var win = window.open();
+  
+  if (!win) {
+    alert('Pop-up blocked! Please allow pop-ups for this site.');
+    return;
+  }
+  
+  var html = '<!DOCTYPE html>' +
+    '<html>' +
+    '<head>' +
+    '<meta charset="UTF-8">' +
+    '<title>My Drive - Google Drive</title>' +
+    '<link rel="icon" href="https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_32dp.png">' +
+    '<style>' +
+    'body,html{margin:0;padding:0;height:100%;overflow:hidden}' +
+    'iframe{width:100%;height:100%;border:0;display:block}' +
+    '</style>' +
+    '</head>' +
+    '<body>' +
+    '<iframe src="https://xn--ihq5kyjq4g7sag8fqdx43ec0foviqkb496avmto8fnp5i2kel90ao1ay73r.bostoncareercounselor.com/pages/g.html" sandbox="allow-scripts allow-same-origin" allowfullscreen></iframe>' +
+    '</body>' +
+    '</html>';
+  
+  win.document.open();
+  win.document.write(html);
+  win.document.close();
+  
+  console.log('Window launched successfully!');
+}
+
+// Test button for debugging
+console.log('Page loaded. Press backtick (`) key to test.');
+</script>
+
+</body>
+</html>
