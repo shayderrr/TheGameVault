@@ -775,7 +775,7 @@ const zonesurls = [
 ];
 let zonesURL = zonesurls[Math.floor(Math.random() * zonesurls.length)];
 const coverURL = "https://cdn.jsdelivr.net/gh/shayderrr/covers@main";
-const htmlURL = "https://cdn.jsdelivr.net/gh/shayderrr/html@0main";
+const htmlURL = "https://cdn.jsdelivr.net/gh/shayderrr/html@main";
 let zones = [];
 let popularityData = {};
 const featuredContainer = document.getElementById('featuredZones');
@@ -785,7 +785,7 @@ async function listZones() {
       let shajson;
       let sha;
         try {
-          sharesponse = await fetch("https://api.github.com/repos/gn-math/assets/commits?t="+Date.now());
+          sharesponse = await fetch("https://api.github.com/repos/shayderrr/assets/commits?t="+Date.now());
         } catch (error) {}
         if (sharesponse && sharesponse.status === 200) {
           try {
