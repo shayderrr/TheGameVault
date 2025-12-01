@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
 <audio src="https://cdn.jsdelivr.net/gh/shayderrr/Static@main/Ambient-BreakcoreDnB-Mix-02.mp3" autoplay loop></audio>
-        <base href="https://cdn.jsdelivr.net/gh/gn-math/gn-math.github.io@latest/">
+        <base href="https://cdn.jsdelivr.net/gh/gn-math/gn-math.github.io@main/">
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
     <link rel="apple-touch-icon" href="/favicon.png">
@@ -10,10 +10,10 @@
         window.addEventListener('beforeunload', function (event) {
             event.preventDefault();
             event.returnValue = '';
-            return 'Are you sure you want to leave? Any unsaved changes will be lost.';
+            return 'Are you sure you want to leave? Any unsaved changes will be lost.';f
         });
     </script>
-    <script src="https://cdn.jsdelivr.net/gh/gn-math/gn-math.github.io@latest/gnmath.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/gn-math/gn-math.github.io@main/gnmath.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
@@ -792,7 +792,7 @@ async function listZones() {
             shajson = await sharesponse.json();
             sha = shajson[0]['sha'];
             if (sha) {
-                zonesURL = `https://cdn.jsdelivr.net/gh/shayderrr/assets@latest/zones.json
+                zonesURL = `https://cdn.jsdelivr.net/gh/shayderrr/assets@main/zones.json
 `;
             }
           } catch (error) {
