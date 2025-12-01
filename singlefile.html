@@ -914,7 +914,7 @@
         <a class="nav-link" href="https://aihumanize.com" target="_blank">AI Humanize</a>
       </li>
       <li><div class="nav-category">🛠️ Tools</div>
-        <div class="nav-link" id="aether">Tor</div>
+  
         <div class="nav-link" data-src="https://cdn.jsdelivr.net/gh/shayderrr/676767@main/google.html">Google Web</div>
         <div class="nav-link" data-src="https://cdn.jsdelivr.net/gh/shayderrr/676767@main/zen.html">Browser Web</div>
         <div class="nav-link" data-src="https://cdn.jsdelivr.net/gh/shayderrr/676767@main/viewer.html">HTML Viewer</div>
@@ -2317,64 +2317,7 @@ const superGamesHTML = `
 </body>
 </html>
 `;
-const aetherHTML = `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    html, body {
-      padding: 0;
-      margin: 0;
-      height: 100%;
-    }
-    .button {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100vw;
-      height: 100vh;
-      background-color: #000;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      font-size: 24px;
-      font-weight: bold;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background-color 0.3s, transform 0.2s;
-    }
-    .button:hover {
-      background-color: #4a148c;
-    }
-  </style>
-</head>
-<body>
-  <a id="button" class="button">Launch</a>
-  <script>
-    document.getElementById('button').addEventListener('click', launch);
-    function launch() {
-      const newWin = window.open("about:blank", "_blank");
-      if (!newWin) {
-        console.error("Popup blocked");
-        return;
-      }
-      fetch("https://cdn.jsdelivr.net/gh/shayderrr/TheGameVault@main/tor.html?t=" + Date.now())
-        .then(response => response.text())
-        .then(text => {
-          newWin.document.open();
-          newWin.document.write(text);
-          newWin.document.close();
-        })
-        .catch(err => {
-          console.error("Fetch error:", err);
-          newWin.close();
-        });
-    }
-  <\/script>
-</body>
-</html>
-`;
+    /// for devs, set func here, for ex js copy and then link it
 function setContent(html) {
   contentDisplay.innerHTML = html;
   Array.from(contentDisplay.querySelectorAll('script')).forEach(old => {
