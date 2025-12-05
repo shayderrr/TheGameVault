@@ -50,7 +50,7 @@
     .nav-category{font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:600;color:var(--p3);margin:2rem 0 1rem;padding-bottom:.5rem;border-bottom:1px solid rgba(139,92,246,.2);}
     .nav-link{display:block;padding:.8rem 1rem;color:var(--p1);text-decoration:none;border-radius:.75rem;transition:all .3s;position:relative;overflow:hidden;cursor:pointer;}
     .nav-link:hover{color:var(--white);background:rgba(139,92,246,.15);transform:translateX(8px);box-shadow:0 0 20px rgba(139,92,246,.2);}
-    #container{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;overflow-y:auto;overflow-x:hidden;padding-top:80px;}
+    #container{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;overflow-y:auto;overflow-x:hidden;}
     #content-display{min-height:100%;width:100%;}
     @media(max-width:768px){.menu{max-width:100%;}.logo{font-size:1.4rem;}}
     /* ---------- Theme / layout (adapted from your theme) ---------- */
@@ -1010,7 +1010,7 @@
       <input type="text" id="inputTitle" placeholder="e.g., Google Docs">
       <div class="presets">
         <button class="preset" data-t="Google Docs" data-f="https://ssl.gstatic.com/docs/documents/images/kix-favicon7.ico">Google Docs</button>
-        <button class="preset" data-t="Google Drive" data-f="https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_32dp.png">Google Drive</button>
+        <button class="preset" data-t="Google Slides" data-f="https://ssl.gstatic.com/docs/presentations/images/favicon-2023q4.ico">Google Slides</button>
         <button class="preset" data-t="Dashboard" data-f="https://instructure-uploads.s3.amazonaws.com/account_30000000002042/attachments/80746393/favicon-16x16.png">Canvas</button>
         <button class="preset" data-t="Google" data-f="https://www.gstatic.com/images/branding/searchlogo/ico/favicon.ico">Google</button>
       </div>
@@ -1042,7 +1042,7 @@
         <input type="text" id="launchTitle" placeholder="e.g., Google Docs">
         <div class="presets">
           <button class="preset lp" data-t="Google Docs" data-f="https://ssl.gstatic.com/docs/documents/images/kix-favicon7.ico">Docs</button>
-          <button class="preset lp" data-t="Google Drive" data-f="https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_32dp.png">Drive</button>
+          <button class="preset lp" data-t="Google Slides" data-f="https://ssl.gstatic.com/docs/presentations/images/favicon-2023q4.ico">Slides</button>
           <button class="preset lp" data-t="Dashboard" data-f="https://instructure-uploads.s3.amazonaws.com/account_30000000002042/attachments/80746393/favicon-16x16.png">Canvas</button>
           <button class="preset lp" data-t="Google" data-f="https://www.gstatic.com/images/branding/searchlogo/ico/favicon.ico">Google</button>
         </div>
@@ -1195,12 +1195,40 @@ function launchWithDisguise(url, cTitle, cFav) {
         mod = mod.replace(/<title>.*?<\/title>/gi, '');
       }
       
-      // Create script to override window.open for child windows
+      // Create script to apply disguise to this window AND override window.open for child windows
       let injectionScript = '<script>';
       injectionScript += '(function(){';
       injectionScript += 'var customTitle = ' + (cTitle ? '"' + cTitle.replace(/\\/g, '\\\\').replace(/"/g, '\\"') + '"' : 'null') + ';';
       injectionScript += 'var customFav = ' + (cFav ? '"' + cFav.replace(/\\/g, '\\\\').replace(/"/g, '\\"') + '"' : 'null') + ';';
       injectionScript += `
+        // Function to apply disguise to current window
+        function applyToSelf() {
+          try {
+            if (customTitle) {
+              document.title = customTitle;
+            }
+            if (customFav && document.head) {
+              var icons = document.querySelectorAll('link[rel*="icon"]');
+              icons.forEach(function(el) { el.remove(); });
+              var link = document.createElement('link');
+              link.rel = 'icon';
+              link.type = 'image/x-icon';
+              link.href = customFav;
+              document.head.appendChild(link);
+            }
+          } catch(e) {}
+        }
+        
+        // Apply immediately and multiple times
+        applyToSelf();
+        setTimeout(applyToSelf, 50);
+        setTimeout(applyToSelf, 150);
+        setTimeout(applyToSelf, 300);
+        setTimeout(applyToSelf, 500);
+        setTimeout(applyToSelf, 1000);
+        setTimeout(applyToSelf, 2000);
+        
+        // Override window.open for child windows
         var originalOpen = window.open;
         window.open = function(url, target, features) {
           var win = originalOpen.call(window, url, target, features);
@@ -1246,26 +1274,6 @@ function launchWithDisguise(url, cTitle, cFav) {
       newWin.document.open();
       newWin.document.write(mod);
       newWin.document.close();
-      
-      // Apply to parent window too
-      function applyCustomizations() {
-        try {
-          if (cTitle) newWin.document.title = cTitle;
-          if (cFav) {
-            var icons = newWin.document.querySelectorAll('link[rel*="icon"]');
-            icons.forEach(function(el) { el.remove(); });
-            var link = newWin.document.createElement('link');
-            link.rel = 'icon';
-            link.type = 'image/x-icon';
-            link.href = cFav;
-            newWin.document.head.appendChild(link);
-          }
-        } catch(e) {}
-      }
-      applyCustomizations();
-      setTimeout(applyCustomizations, 100);
-      setTimeout(applyCustomizations, 500);
-      setTimeout(applyCustomizations, 1000);
     })
     .catch(err => { console.error("Fetch error:", err); newWin.close(); });
 }
@@ -1412,6 +1420,7 @@ window.addEventListener('message', e => { if (e.data && e.data.type === 'showLau
             margin-bottom: 1.5rem;
             letter-spacing: -0.02em;
             text-align: center;
+            padding-top: 80px;
         }
 
         .page-title .title-text {
@@ -2165,7 +2174,7 @@ const htmlGamesLocalHTML = `
   </style>
 </head>
 <body>
-  <a id="button" class="button">Launch</a>
+  <a id="button" class="button">Launch In A New Tab</a>
   <script>
     document.getElementById('button').addEventListener('click', function(){
       window.showLaunchModal('https://cdn.jsdelivr.net/gh/thedecap/676767@170c9a9b51bcc26e2400cbf0efe684cafb28e106/ugs.html');
@@ -2188,7 +2197,7 @@ const linkedMore = `
   </style>
 </head>
 <body>
-  <a id="button" class="button">Launch</a>
+  <a id="button" class="button">Launch In A New Tab</a>
   <script>
     document.getElementById('button').addEventListener('click', function(){
       window.showLaunchModal('https://cdn.jsdelivr.net/gh/shayderrr/676767/moregames.html');
@@ -2211,7 +2220,7 @@ const oslink = `
   </style>
 </head>
 <body>
-  <a id="button" class="button">Launch</a>
+  <a id="button" class="button">Launch In A New Tab</a>
   <script>
     document.getElementById('button').addEventListener('click', function(){
       window.showLaunchModal('https://cdn.jsdelivr.net/gh/shayderrr/676767@main/operating.html');
@@ -2234,7 +2243,7 @@ const ethansGamesHTML = `
   </style>
 </head>
 <body>
-  <a id="button" class="button">Launch</a>
+  <a id="button" class="button">Launch In A New Tab</a>
   <script>
     document.getElementById('button').addEventListener('click', function(){
       window.showLaunchModal('https://cdn.jsdelivr.net/gh/shayderrr/676767@4d0ea0395c0791bd6dc40c0f7fc7c5262bf9f17f/ethans.html');
@@ -2257,7 +2266,7 @@ const ownerGamesHTML = `
   </style>
 </head>
 <body>
-  <a id="button" class="button">Launch</a>
+  <a id="button" class="button">Launch In A New Tab</a>
   <script>
     document.getElementById('button').addEventListener('click', function(){
       window.showLaunchModal('https://cdn.jsdelivr.net/gh/shayderrr/676767/owner.html');
@@ -2280,7 +2289,7 @@ const extremeGamesHTML = `
   </style>
 </head>
 <body>
-  <a id="button" class="button">Launch</a>
+  <a id="button" class="button">Launch In A New Tab</a>
   <script>
     document.getElementById('button').addEventListener('click', function(){
       window.showLaunchModal('https://cdn.jsdelivr.net/gh/shayderrr/676767/extreme.html');
@@ -2303,7 +2312,7 @@ const dominumGamesHTML = `
   </style>
 </head>
 <body>
-  <a id="button" class="button">Launch</a>
+  <a id="button" class="button">Launch In A New Tab</a>
   <script>
     document.getElementById('button').addEventListener('click', function(){
       window.showLaunchModal('https://cdn.jsdelivr.net/gh/shayderrr/676767/dominum.html');
@@ -2326,7 +2335,7 @@ const superGamesHTML = `
   </style>
 </head>
 <body>
-  <a id="button" class="button">Launch</a>
+  <a id="button" class="button">Launch In A New Tab</a>
   <script>
     document.getElementById('button').addEventListener('click', function(){
       window.showLaunchModal('https://cdn.jsdelivr.net/gh/shayderrr/676767/super.html');
