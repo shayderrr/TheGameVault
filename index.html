@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard</title>
-  <audio src="https://cdn.jsdelivr.net/gh/shayderrr/Static@main/Ambient-BreakcoreDnB-Mix-02.mp3" autoplay loop></audio>
   <link rel="icon" href="https://instructure-uploads.s3.amazonaws.com/account_30000000002042/attachments/80746393/favicon-16x16.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
   <style>
@@ -50,7 +49,7 @@
     .nav-category{font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:600;color:var(--p3);margin:2rem 0 1rem;padding-bottom:.5rem;border-bottom:1px solid rgba(139,92,246,.2);}
     .nav-link{display:block;padding:.8rem 1rem;color:var(--p1);text-decoration:none;border-radius:.75rem;transition:all .3s;position:relative;overflow:hidden;cursor:pointer;}
     .nav-link:hover{color:var(--white);background:rgba(139,92,246,.15);transform:translateX(8px);box-shadow:0 0 20px rgba(139,92,246,.2);}
-    #container{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;overflow-y:auto;overflow-x:hidden;}
+    #container{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;overflow-y:auto;overflow-x:hidden;padding-top:80px;}
     #content-display{min-height:100%;width:100%;}
     @media(max-width:768px){.menu{max-width:100%;}.logo{font-size:1.4rem;}}
     /* ---------- Theme / layout (adapted from your theme) ---------- */
@@ -860,49 +859,6 @@
     .right-panel::-webkit-scrollbar-thumb:hover {
       background: rgba(139, 92, 246, 0.5);
     }
-    
-    /* ===== DISGUISE BUTTON STYLING ===== */
-.nav-link.disguise-btn{background:linear-gradient(135deg,rgba(139,92,246,.2),rgba(139,92,246,.1));border:1px solid rgba(139,92,246,.3);margin-top:0.5rem;margin-bottom:1rem;}
-.nav-link.disguise-btn:hover{background:linear-gradient(135deg,rgba(139,92,246,.4),rgba(139,92,246,.2));border-color:rgba(139,92,246,.5);}
-
-/* ===== DISGUISE MODAL STYLES ===== */
-.disguise-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);z-index:2000;display:none;align-items:center;justify-content:center;}
-.disguise-overlay.show{display:flex;}
-.disguise-modal{background:rgba(10,0,21,.98);border:1px solid rgba(139,92,246,.3);border-radius:1.25rem;padding:1.75rem;width:90%;max-width:420px;box-shadow:0 20px 50px rgba(139,92,246,.25);animation:modalSlide .25s ease;}
-@keyframes modalSlide{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
-.disguise-modal h2{font-family:'Space Grotesk',sans-serif;font-size:1.4rem;color:var(--white);margin-bottom:1.25rem;display:flex;align-items:center;gap:.5rem;}
-.current-info{background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.2);border-radius:.6rem;padding:.85rem;margin-bottom:1.25rem;}
-.current-info p{font-size:.75rem;color:var(--p3);margin-bottom:.2rem;}
-.current-info .val{font-size:.9rem;color:var(--white);word-break:break-all;}
-.form-group{margin-bottom:1rem;}
-.form-group label{display:block;font-size:.8rem;color:var(--p3);margin-bottom:.4rem;font-weight:500;}
-.form-group input{width:100%;padding:.75rem .9rem;background:rgba(255,255,255,.05);border:1px solid rgba(139,92,246,.2);border-radius:.6rem;color:var(--white);font-size:.95rem;font-family:'Inter',sans-serif;transition:all .2s;}
-.form-group input:focus{outline:none;border-color:var(--p5);background:rgba(255,255,255,.08);}
-.presets{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.5rem;}
-.preset{padding:.4rem .7rem;background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.2);border-radius:.4rem;color:var(--p2);font-size:.75rem;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif;}
-.preset:hover{background:rgba(139,92,246,.25);border-color:rgba(139,92,246,.4);color:var(--white);}
-.modal-btns{display:flex;gap:.6rem;margin-top:1.25rem;}
-.modal-btns button{flex:1;padding:.75rem 1rem;border-radius:.6rem;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif;}
-.btn-cancel{background:transparent;border:1px solid rgba(139,92,246,.3);color:var(--p3);}
-.btn-cancel:hover{background:rgba(139,92,246,.1);color:var(--white);}
-.btn-reset{background:rgba(255,92,92,.1);border:1px solid rgba(255,92,92,.3);color:#ff8a8a;}
-.btn-reset:hover{background:rgba(255,92,92,.2);}
-.btn-apply{background:linear-gradient(135deg,var(--p6),var(--p5));border:none;color:var(--white);}
-.btn-apply:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(139,92,246,.35);}
-
-/* ===== LAUNCH MODAL STYLES ===== */
-.launch-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.88);backdrop-filter:blur(8px);z-index:2000;display:none;align-items:center;justify-content:center;}
-.launch-overlay.show{display:flex;}
-.launch-modal{background:rgba(10,0,21,.98);border:1px solid rgba(139,92,246,.3);border-radius:1.25rem;padding:1.75rem;width:90%;max-width:380px;box-shadow:0 20px 50px rgba(139,92,246,.25);animation:modalSlide .25s ease;}
-.launch-modal h2{font-family:'Space Grotesk',sans-serif;font-size:1.3rem;color:var(--white);margin-bottom:.4rem;}
-.launch-modal>p{color:var(--p3);font-size:.85rem;margin-bottom:1.25rem;}
-.check-group{display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem;cursor:pointer;}
-.check-group input[type="checkbox"]{width:16px;height:16px;accent-color:var(--p5);cursor:pointer;}
-.check-group label{color:var(--p2);font-size:.85rem;cursor:pointer;}
-.launch-opts{display:none;margin-top:.75rem;padding:.9rem;background:rgba(139,92,246,.05);border:1px solid rgba(139,92,246,.15);border-radius:.6rem;}
-.launch-opts.show{display:block;}
-.btn-launch{width:100%;padding:.9rem;background:linear-gradient(135deg,var(--p6),var(--p5));border:none;border-radius:.6rem;color:var(--white);font-size:.95rem;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif;margin-top:.75rem;}
-.btn-launch:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(139,92,246,.35);}
   </style>
 </head>
 <body>
@@ -917,7 +873,6 @@
     <div class="close-btn" id="closeBtn" style="display: none;"> </div>
     <ul class="nav-list">
       <li><div class="nav-link nav-home">Home</div></li>
-      <li><div class="nav-link disguise-btn" id="changeDisguiseBtn">🎭 Change Disguise</div></li>
       <li><div class="nav-category">🕹️ Home Page</div>
         <div class="nav-link" data-src="https://cdn.jsdelivr.net/gh/shayderrr/676767@2057dace702c51405ad7cae4cd3ad9b9ecbbfa79/annoucements.html">Annoucements</div>
         <div class="nav-link" data-src="https://cdn.jsdelivr.net/gh/shayderrr/676767@d3eb0c7dae57730b5b870b44004436e743b6a3cc/guidelines.html">Guidelines</div>
@@ -958,7 +913,6 @@
         <a class="nav-link" href="https://aihumanize.com" target="_blank">AI Humanize</a>
       </li>
       <li><div class="nav-category">🛠️ Tools</div>
-  
         <div class="nav-link" data-src="https://cdn.jsdelivr.net/gh/shayderrr/676767@main/google.html">Google Web</div>
         <div class="nav-link" data-src="https://cdn.jsdelivr.net/gh/shayderrr/676767@main/zen.html">Browser Web</div>
         <div class="nav-link" data-src="https://cdn.jsdelivr.net/gh/shayderrr/676767@main/viewer.html">HTML Viewer</div>
@@ -996,69 +950,6 @@
       <div class="nav-link" data-src="https://cdn.jsdelivr.net/gh/shayderrr/676767@9318dbe582dc8a91e97746dff301cb0e97c5bc2c/freddy.html">Freddies Internet</div>
     </ul>
   </nav>
-  <!-- DISGUISE MODAL -->
-<div class="disguise-overlay" id="disguiseOverlay">
-  <div class="disguise-modal">
-    <h2>🎭 Change Disguise</h2>
-    <div class="current-info">
-      <p>Current Title:</p>
-      <div class="val" id="curTitle">Dashboard</div>
-      <p style="margin-top:.5rem;">Current Favicon:</p>
-      <div class="val" id="curFavicon">Default</div>
-    </div>
-    <div class="form-group">
-      <label>Page Title</label>
-      <input type="text" id="inputTitle" placeholder="e.g., Google Docs">
-      <div class="presets">
-        <button class="preset" data-t="Google Docs" data-f="https://ssl.gstatic.com/docs/documents/images/kix-favicon7.ico">Google Docs</button>
-        <button class="preset" data-t="Google Slides" data-f="https://ssl.gstatic.com/docs/presentations/images/favicon-2023q4.ico">Google Slides</button>
-        <button class="preset" data-t="Dashboard" data-f="https://instructure-uploads.s3.amazonaws.com/account_30000000002042/attachments/80746393/favicon-16x16.png">Canvas</button>
-        <button class="preset" data-t="Google" data-f="https://www.gstatic.com/images/branding/searchlogo/ico/favicon.ico">Google</button>
-      </div>
-    </div>
-    <div class="form-group">
-      <label>Favicon URL</label>
-      <input type="text" id="inputFavicon" placeholder="https://example.com/favicon.ico">
-    </div>
-    <div class="modal-btns">
-      <button class="btn-cancel" id="disguiseCancel">Cancel</button>
-      <button class="btn-reset" id="disguiseReset">Reset</button>
-      <button class="btn-apply" id="disguiseApply">Apply</button>
-    </div>
-  </div>
-</div>
-
-<!-- LAUNCH MODAL -->
-<div class="launch-overlay" id="launchOverlay">
-  <div class="launch-modal">
-    <h2>🚀 Launch Game</h2>
-    <p>Ready to launch. Customize the tab appearance.</p>
-    <div class="check-group">
-      <input type="checkbox" id="customCheck">
-      <label for="customCheck">Customize game tab disguise</label>
-    </div>
-    <div class="launch-opts" id="launchOpts">
-      <div class="form-group">
-        <label>Tab Title</label>
-        <input type="text" id="launchTitle" placeholder="e.g., Google Docs">
-        <div class="presets">
-          <button class="preset lp" data-t="Google Docs" data-f="https://ssl.gstatic.com/docs/documents/images/kix-favicon7.ico">Docs</button>
-          <button class="preset lp" data-t="Google Slides" data-f="https://ssl.gstatic.com/docs/presentations/images/favicon-2023q4.ico">Slides</button>
-          <button class="preset lp" data-t="Dashboard" data-f="https://instructure-uploads.s3.amazonaws.com/account_30000000002042/attachments/80746393/favicon-16x16.png">Canvas</button>
-          <button class="preset lp" data-t="Google" data-f="https://www.gstatic.com/images/branding/searchlogo/ico/favicon.ico">Google</button>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Favicon URL</label>
-        <input type="text" id="launchFavicon" placeholder="https://example.com/favicon.ico">
-      </div>
-    </div>
-    <div class="modal-btns">
-      <button class="btn-cancel" id="launchCancel">Cancel</button>
-      <button class="btn-launch" id="launchGo">🎮 Launch</button>
-    </div>
-  </div>
-</div>
   <div id="container">
     <div id="content-display"></div>
   </div>
@@ -1067,220 +958,12 @@
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
   <script>
-    // ========== DISGUISE SYSTEM ==========
-const DEFAULT_TITLE = 'Dashboard';
-const DEFAULT_FAVICON = 'https://instructure-uploads.s3.amazonaws.com/account_30000000002042/attachments/80746393/favicon-16x16.png';
-
-function loadSavedDisguise() {
-  try {
-    const t = localStorage.getItem('disguiseTitle');
-    const f = localStorage.getItem('disguiseFavicon');
-    if (t) { document.title = t; document.getElementById('curTitle').textContent = t; }
-    if (f) { setFavicon(f); document.getElementById('curFavicon').textContent = f; }
-  } catch(e) {}
-}
-
-function setFavicon(url) {
-  function applyFavicon() {
-    try {
-      // Remove all existing favicons
-      const icons = document.querySelectorAll('link[rel*="icon"]');
-      icons.forEach(el => el.remove());
-      
-      // Create new favicon
-      const link = document.createElement('link');
-      link.rel = 'icon';
-      link.type = 'image/x-icon';
-      link.href = url;
-      document.head.appendChild(link);
-    } catch(e) { console.error(e); }
-  }
-  
-  applyFavicon();
-  setTimeout(applyFavicon, 100);
-  setTimeout(applyFavicon, 300);
-  setTimeout(applyFavicon, 600);
-}
-
-function applyDisguise(title, favicon) {
-  if (title) { document.title = title; document.getElementById('curTitle').textContent = title; try { localStorage.setItem('disguiseTitle', title); } catch(e) {} }
-  if (favicon) { setFavicon(favicon); document.getElementById('curFavicon').textContent = favicon; try { localStorage.setItem('disguiseFavicon', favicon); } catch(e) {} }
-}
-
-function resetDisguise() {
-  document.title = DEFAULT_TITLE;
-  setFavicon(DEFAULT_FAVICON);
-  document.getElementById('curTitle').textContent = DEFAULT_TITLE;
-  document.getElementById('curFavicon').textContent = 'Default';
-  document.getElementById('inputTitle').value = '';
-  document.getElementById('inputFavicon').value = '';
-  try { localStorage.removeItem('disguiseTitle'); localStorage.removeItem('disguiseFavicon'); } catch(e) {}
-}
-
-loadSavedDisguise();
-
     const hamburger = document.getElementById('hamburger');
     const menu = document.getElementById('menu');
     const closeBtn = document.getElementById('closeBtn');
     const links = document.querySelectorAll('.nav-link[data-src]');
     const homeLink = document.querySelector('.nav-home');
     const contentDisplay = document.getElementById('content-display');
-    // ========== DISGUISE MODAL CONTROLS ==========
-const disguiseOverlay = document.getElementById('disguiseOverlay');
-document.getElementById('changeDisguiseBtn').addEventListener('click', () => { 
-  disguiseOverlay.classList.add('show'); 
-  hamburger.classList.remove('active'); 
-  menu.classList.remove('open'); 
-});
-document.getElementById('disguiseCancel').addEventListener('click', () => disguiseOverlay.classList.remove('show'));
-document.getElementById('disguiseReset').addEventListener('click', () => { resetDisguise(); disguiseOverlay.classList.remove('show'); });
-document.getElementById('disguiseApply').addEventListener('click', () => {
-  const t = document.getElementById('inputTitle').value.trim();
-  const f = document.getElementById('inputFavicon').value.trim();
-  applyDisguise(t || null, f || null);
-  disguiseOverlay.classList.remove('show');
-});
-document.querySelectorAll('.preset:not(.lp)').forEach(btn => {
-  btn.addEventListener('click', () => { 
-    document.getElementById('inputTitle').value = btn.dataset.t; 
-    document.getElementById('inputFavicon').value = btn.dataset.f; 
-  });
-});
-disguiseOverlay.addEventListener('click', e => { if (e.target === disguiseOverlay) disguiseOverlay.classList.remove('show'); });
-
-// ========== LAUNCH MODAL SYSTEM ==========
-const launchOverlay = document.getElementById('launchOverlay');
-const customCheck = document.getElementById('customCheck');
-const launchOpts = document.getElementById('launchOpts');
-let pendingUrl = null;
-
-customCheck.addEventListener('change', () => launchOpts.classList.toggle('show', customCheck.checked));
-document.querySelectorAll('.preset.lp').forEach(btn => {
-  btn.addEventListener('click', () => { 
-    document.getElementById('launchTitle').value = btn.dataset.t; 
-    document.getElementById('launchFavicon').value = btn.dataset.f; 
-  });
-});
-document.getElementById('launchCancel').addEventListener('click', () => { launchOverlay.classList.remove('show'); pendingUrl = null; });
-launchOverlay.addEventListener('click', e => { if (e.target === launchOverlay) { launchOverlay.classList.remove('show'); pendingUrl = null; } });
-
-document.getElementById('launchGo').addEventListener('click', () => {
-  if (!pendingUrl) return;
-  const cTitle = customCheck.checked ? document.getElementById('launchTitle').value.trim() : '';
-  const cFav = customCheck.checked ? document.getElementById('launchFavicon').value.trim() : '';
-  launchWithDisguise(pendingUrl, cTitle, cFav);
-  launchOverlay.classList.remove('show');
-  pendingUrl = null;
-});
-
-window.showLaunchModal = function(url) {
-  pendingUrl = url;
-  document.getElementById('launchTitle').value = '';
-  document.getElementById('launchFavicon').value = '';
-  customCheck.checked = false;
-  launchOpts.classList.remove('show');
-  launchOverlay.classList.add('show');
-}
-
-function launchWithDisguise(url, cTitle, cFav) {
-  const newWin = window.open("about:blank", "_blank");
-  if (!newWin) { console.error("Popup blocked"); return; }
-  fetch(url + "?t=" + Date.now())
-    .then(r => r.text())
-    .then(html => {
-      let mod = html;
-      
-      // Remove existing favicons and title from HTML
-      mod = mod.replace(/<link[^>]*rel=["'](?:icon|shortcut icon|apple-touch-icon)["'][^>]*>/gi, '');
-      if (cTitle) {
-        mod = mod.replace(/<title>.*?<\/title>/gi, '');
-      }
-      
-      // Create script to apply disguise to this window AND override window.open for child windows
-      let injectionScript = '<script>';
-      injectionScript += '(function(){';
-      injectionScript += 'var customTitle = ' + (cTitle ? '"' + cTitle.replace(/\\/g, '\\\\').replace(/"/g, '\\"') + '"' : 'null') + ';';
-      injectionScript += 'var customFav = ' + (cFav ? '"' + cFav.replace(/\\/g, '\\\\').replace(/"/g, '\\"') + '"' : 'null') + ';';
-      injectionScript += `
-        // Function to apply disguise to current window
-        function applyToSelf() {
-          try {
-            if (customTitle) {
-              document.title = customTitle;
-            }
-            if (customFav && document.head) {
-              var icons = document.querySelectorAll('link[rel*="icon"]');
-              icons.forEach(function(el) { el.remove(); });
-              var link = document.createElement('link');
-              link.rel = 'icon';
-              link.type = 'image/x-icon';
-              link.href = customFav;
-              document.head.appendChild(link);
-            }
-          } catch(e) {}
-        }
-        
-        // Apply immediately and multiple times
-        applyToSelf();
-        setTimeout(applyToSelf, 50);
-        setTimeout(applyToSelf, 150);
-        setTimeout(applyToSelf, 300);
-        setTimeout(applyToSelf, 500);
-        setTimeout(applyToSelf, 1000);
-        setTimeout(applyToSelf, 2000);
-        
-        // Override window.open for child windows
-        var originalOpen = window.open;
-        window.open = function(url, target, features) {
-          var win = originalOpen.call(window, url, target, features);
-          if (win) {
-            function applyDisguise() {
-              try {
-                if (customTitle && win.document) {
-                  win.document.title = customTitle;
-                }
-                if (customFav && win.document && win.document.head) {
-                  var icons = win.document.querySelectorAll('link[rel*="icon"]');
-                  icons.forEach(function(el) { el.remove(); });
-                  var link = win.document.createElement('link');
-                  link.rel = 'icon';
-                  link.type = 'image/x-icon';
-                  link.href = customFav;
-                  win.document.head.appendChild(link);
-                }
-              } catch(e) {}
-            }
-            applyDisguise();
-            setTimeout(applyDisguise, 50);
-            setTimeout(applyDisguise, 200);
-            setTimeout(applyDisguise, 500);
-            setTimeout(applyDisguise, 1000);
-            setTimeout(applyDisguise, 2000);
-          }
-          return win;
-        };
-      `;
-      injectionScript += '})();';
-      injectionScript += '<\/script>';
-      
-      // Inject at start of head
-      if (mod.toLowerCase().includes('<head>')) {
-        mod = mod.replace(/<head>/i, '<head>' + injectionScript);
-      } else if (mod.toLowerCase().includes('<html>')) {
-        mod = mod.replace(/<html[^>]*>/i, '$&<head>' + injectionScript + '</head>');
-      } else {
-        mod = injectionScript + mod;
-      }
-      
-      newWin.document.open();
-      newWin.document.write(mod);
-      newWin.document.close();
-    })
-    .catch(err => { console.error("Fetch error:", err); newWin.close(); });
-}
-
-// Listen for postMessage from launch pages
-window.addEventListener('message', e => { if (e.data && e.data.type === 'showLaunchModal') showLaunchModal(e.data.url); });
     const homePageHTML = `
 <!DOCTYPE html>
 <html lang="en">
@@ -1289,6 +972,7 @@ window.addEventListener('message', e => { if (e.data && e.data.type === 'showLau
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <audio src="https://cdn.jsdelivr.net/gh/shayderrr/Static@main/Ambient-BreakcoreDnB-Mix-02.mp3" autoplay loop></audio>
     <title>The Game Vault | 🕹️👾</title>
+<audio src="https://cdn.jsdelivr.net/gh/shayderrr/Static@main/Ambient-BreakcoreDnB-Mix-02.mp3" autoplay loop hidden></audio>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -1421,7 +1105,6 @@ window.addEventListener('message', e => { if (e.data && e.data.type === 'showLau
             margin-bottom: 1.5rem;
             letter-spacing: -0.02em;
             text-align: center;
-            padding-top: 80px;
         }
 
         .page-title .title-text {
@@ -2169,36 +1852,33 @@ const htmlGamesLocalHTML = `
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    html, body { padding: 0; margin: 0; height: 100%; }
-    .button { display: flex; align-items: center; justify-content: center; width: 100vw; height: 100vh; background-color: #000; color: #fff; font-family: Arial, sans-serif; font-size: 24px; font-weight: bold; cursor: pointer; text-decoration: none; transition: background-color 0.3s; }
-    .button:hover { background-color: #4a148c; }
+    html, body {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+    }
+    .button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100vw;
+      height: 100vh;
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    .button:hover {
+      background-color: #4a148c;
+    }
   </style>
 </head>
 <body>
-  <a id="button" class="button">Launch In A New Tab</a>
-  <script>
-    document.getElementById('button').addEventListener('click', function(){
-      window.showLaunchModal('https://cdn.jsdelivr.net/gh/thedecap/676767@170c9a9b51bcc26e2400cbf0efe684cafb28e106/ugs.html');
-    });
-  <\/script>
-</body>
-</html>
-`;
-
-const linkedMore = `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    html, body { padding: 0; margin: 0; height: 100%; }
-    .button { display: flex; align-items: center; justify-content: center; width: 100vw; height: 100vh; background-color: #000; color: #fff; font-family: Arial, sans-serif; font-size: 24px; font-weight: bold; cursor: pointer; text-decoration: none; transition: background-color 0.3s; }
-    .button:hover { background-color: #4a148c; }
-  </style>
-</head>
-<body>
-  <a id="button" class="button">Launch In A New Tab</a>
+  <a id="button" class="button">Launch</a>
   <script>
     document.getElementById('button').addEventListener('click', launch);
     function launch() {
@@ -2207,7 +1887,184 @@ const linkedMore = `
         console.error("Popup blocked");
         return;
       }
-      fetch("https://cdn.jsdelivr.net/gh/shayderrr/676767/moregames.html?t=" + Date.now())
+      fetch("https://cdn.jsdelivr.net/gh/shayderrr/676767/ugs.html?t=" + Date.now())
+        .then(response => response.text())
+        .then(text => {
+          newWin.document.open();
+          newWin.document.write(text);
+          newWin.document.close();
+        })
+        .catch(err => {
+          console.error("Fetch error:", err);
+          newWin.close();
+        });
+    }
+  <\/script>
+</body>
+</html>
+`;
+const linkedMore = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+    }
+    .button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100vw;
+      height: 100vh;
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    .button:hover {
+      background-color: #4a148c;
+    }
+  </style>
+</head>
+<body>
+  <a id="button" class="button">Launch</a>
+  <script>
+    document.getElementById('button').addEventListener('click', launch);
+    function launch() {
+      const newWin = window.open("about:blank", "_blank");
+      if (!newWin) {
+        console.error("Popup blocked");
+        return;
+      }
+      fetch("https://cdn.jsdelivr.net/gh/shayderrr/676767/unblockedgames.html?t=" + Date.now())
+        .then(response => response.text())
+        .then(text => {
+          newWin.document.open();
+          newWin.document.write(text);
+          newWin.document.close();
+        })
+        .catch(err => {
+          console.error("Fetch error:", err);
+          newWin.close();
+        });
+    }
+  <\/script>
+</body>
+</html>
+
+`;
+const oslink = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+    }
+    .button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100vw;
+      height: 100vh;
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    .button:hover {
+      background-color: #4a148c;
+    }
+  </style>
+</head>
+<body>
+  <a id="button" class="button">Launch</a>
+  <script>
+    document.getElementById('button').addEventListener('click', launch);
+    function launch() {
+      const newWin = window.open("about:blank", "_blank");
+      if (!newWin) {
+        console.error("Popup blocked");
+        return;
+      }
+      fetch("https://cdn.jsdelivr.net/gh/shayderrr/676767@main/operating.html?t=" + Date.now())
+        .then(response => response.text())
+        .then(text => {
+          newWin.document.open();
+          newWin.document.write(text);
+          newWin.document.close();
+        })
+        .catch(err => {
+          console.error("Fetch error:", err);
+          newWin.close();
+        });
+    }
+  <\/script>
+</body>
+</html>
+
+`;
+
+const ethansGamesHTML = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+    }
+    .button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100vw;
+      height: 100vh;
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    .button:hover {
+      background-color: #4a148c;
+    }
+  </style>
+</head>
+<body>
+  <a id="button" class="button">Launch</a>
+  <script>
+    document.getElementById('button').addEventListener('click', launch);
+    function launch() {
+      const newWin = window.open("about:blank", "_blank");
+      if (!newWin) {
+        console.error("Popup blocked");
+        return;
+      }
+      fetch("https://cdn.jsdelivr.net/gh/shayderrr/676767@4d0ea0395c0791bd6dc40c0f7fc7c5262bf9f17f/ethans.html?=" + Date.now())
         .then(response => response.text())
         .then(text => {
           newWin.document.open();
@@ -2224,52 +2081,6 @@ const linkedMore = `
 </html>
 `;
 
-const oslink = `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    html, body { padding: 0; margin: 0; height: 100%; }
-    .button { display: flex; align-items: center; justify-content: center; width: 100vw; height: 100vh; background-color: #000; color: #fff; font-family: Arial, sans-serif; font-size: 24px; font-weight: bold; cursor: pointer; text-decoration: none; transition: background-color 0.3s; }
-    .button:hover { background-color: #4a148c; }
-  </style>
-</head>
-<body>
-  <a id="button" class="button">Launch In A New Tab</a>
-  <script>
-    document.getElementById('button').addEventListener('click', function(){
-      window.showLaunchModal('https://cdn.jsdelivr.net/gh/shayderrr/676767@main/operating.html');
-    });
-  <\/script>
-</body>
-</html>
-`;
-
-const ethansGamesHTML = `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    html, body { padding: 0; margin: 0; height: 100%; }
-    .button { display: flex; align-items: center; justify-content: center; width: 100vw; height: 100vh; background-color: #000; color: #fff; font-family: Arial, sans-serif; font-size: 24px; font-weight: bold; cursor: pointer; text-decoration: none; transition: background-color 0.3s; }
-    .button:hover { background-color: #4a148c; }
-  </style>
-</head>
-<body>
-  <a id="button" class="button">Launch In A New Tab</a>
-  <script>
-    document.getElementById('button').addEventListener('click', function(){
-      window.showLaunchModal('https://cdn.jsdelivr.net/gh/shayderrr/676767@4d0ea0395c0791bd6dc40c0f7fc7c5262bf9f17f/ethans.html');
-    });
-  <\/script>
-</body>
-</html>
-`;
-
 const ownerGamesHTML = `
 <!DOCTYPE html>
 <html lang="en">
@@ -2277,17 +2088,53 @@ const ownerGamesHTML = `
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    html, body { padding: 0; margin: 0; height: 100%; }
-    .button { display: flex; align-items: center; justify-content: center; width: 100vw; height: 100vh; background-color: #000; color: #fff; font-family: Arial, sans-serif; font-size: 24px; font-weight: bold; cursor: pointer; text-decoration: none; transition: background-color 0.3s; }
-    .button:hover { background-color: #4a148c; }
+    html, body {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+    }
+    .button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100vw;
+      height: 100vh;
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    .button:hover {
+      background-color: #4a148c;
+    }
   </style>
 </head>
 <body>
-  <a id="button" class="button">Launch In A New Tab</a>
+  <a id="button" class="button">Launch</a>
   <script>
-    document.getElementById('button').addEventListener('click', function(){
-      window.showLaunchModal('https://cdn.jsdelivr.net/gh/shayderrr/676767/owner.html');
-    });
+    document.getElementById('button').addEventListener('click', launch);
+    function launch() {
+      const newWin = window.open("about:blank", "_blank");
+      if (!newWin) {
+        console.error("Popup blocked");
+        return;
+      }
+      fetch("https://cdn.jsdelivr.net/gh/shayderrr/676767/owner.html?t=" + Date.now())
+        .then(response => response.text())
+        .then(text => {
+          newWin.document.open();
+          newWin.document.write(text);
+          newWin.document.close();
+        })
+        .catch(err => {
+          console.error("Fetch error:", err);
+          newWin.close();
+        });
+    }
   <\/script>
 </body>
 </html>
@@ -2300,17 +2147,53 @@ const extremeGamesHTML = `
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    html, body { padding: 0; margin: 0; height: 100%; }
-    .button { display: flex; align-items: center; justify-content: center; width: 100vw; height: 100vh; background-color: #000; color: #fff; font-family: Arial, sans-serif; font-size: 24px; font-weight: bold; cursor: pointer; text-decoration: none; transition: background-color 0.3s; }
-    .button:hover { background-color: #4a148c; }
+    html, body {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+    }
+    .button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100vw;
+      height: 100vh;
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    .button:hover {
+      background-color: #4a148c;
+    }
   </style>
 </head>
 <body>
-  <a id="button" class="button">Launch In A New Tab</a>
+  <a id="button" class="button">Launch</a>
   <script>
-    document.getElementById('button').addEventListener('click', function(){
-      window.showLaunchModal('https://cdn.jsdelivr.net/gh/shayderrr/676767/extreme.html');
-    });
+    document.getElementById('button').addEventListener('click', launch);
+    function launch() {
+      const newWin = window.open("about:blank", "_blank");
+      if (!newWin) {
+        console.error("Popup blocked");
+        return;
+      }
+      fetch("https://cdn.jsdelivr.net/gh/shayderrr/676767/extreme.html?t=" + Date.now())
+        .then(response => response.text())
+        .then(text => {
+          newWin.document.open();
+          newWin.document.write(text);
+          newWin.document.close();
+        })
+        .catch(err => {
+          console.error("Fetch error:", err);
+          newWin.close();
+        });
+    }
   <\/script>
 </body>
 </html>
@@ -2323,17 +2206,53 @@ const dominumGamesHTML = `
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    html, body { padding: 0; margin: 0; height: 100%; }
-    .button { display: flex; align-items: center; justify-content: center; width: 100vw; height: 100vh; background-color: #000; color: #fff; font-family: Arial, sans-serif; font-size: 24px; font-weight: bold; cursor: pointer; text-decoration: none; transition: background-color 0.3s; }
-    .button:hover { background-color: #4a148c; }
+    html, body {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+    }
+    .button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100vw;
+      height: 100vh;
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    .button:hover {
+      background-color: #4a148c;
+    }
   </style>
 </head>
 <body>
-  <a id="button" class="button">Launch In A New Tab</a>
+  <a id="button" class="button">Launch</a>
   <script>
-    document.getElementById('button').addEventListener('click', function(){
-      window.showLaunchModal('https://cdn.jsdelivr.net/gh/shayderrr/676767/dominum.html');
-    });
+    document.getElementById('button').addEventListener('click', launch);
+    function launch() {
+      const newWin = window.open("about:blank", "_blank");
+      if (!newWin) {
+        console.error("Popup blocked");
+        return;
+      }
+      fetch("https://cdn.jsdelivr.net/gh/shayderrr/676767/dominum.html?t=" + Date.now())
+        .then(response => response.text())
+        .then(text => {
+          newWin.document.open();
+          newWin.document.write(text);
+          newWin.document.close();
+        })
+        .catch(err => {
+          console.error("Fetch error:", err);
+          newWin.close();
+        });
+    }
   <\/script>
 </body>
 </html>
@@ -2346,22 +2265,58 @@ const superGamesHTML = `
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    html, body { padding: 0; margin: 0; height: 100%; }
-    .button { display: flex; align-items: center; justify-content: center; width: 100vw; height: 100vh; background-color: #000; color: #fff; font-family: Arial, sans-serif; font-size: 24px; font-weight: bold; cursor: pointer; text-decoration: none; transition: background-color 0.3s; }
-    .button:hover { background-color: #4a148c; }
+    html, body {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+    }
+    .button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100vw;
+      height: 100vh;
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    .button:hover {
+      background-color: #4a148c;
+    }
   </style>
 </head>
 <body>
-  <a id="button" class="button">Launch In A New Tab</a>
+  <a id="button" class="button">Launch</a>
   <script>
-    document.getElementById('button').addEventListener('click', function(){
-      window.showLaunchModal('https://cdn.jsdelivr.net/gh/shayderrr/676767/super.html');
-    });
+    document.getElementById('button').addEventListener('click', launch);
+    function launch() {
+      const newWin = window.open("about:blank", "_blank");
+      if (!newWin) {
+        console.error("Popup blocked");
+        return;
+      }
+      fetch("https://cdn.jsdelivr.net/gh/shayderrr/676767/super.html?t=" + Date.now())
+        .then(response => response.text())
+        .then(text => {
+          newWin.document.open();
+          newWin.document.write(text);
+          newWin.document.close();
+        })
+        .catch(err => {
+          console.error("Fetch error:", err);
+          newWin.close();
+        });
+    }
   <\/script>
 </body>
 </html>
 `;
-    /// for devs, set func here, for ex js copy and then link it
+
 function setContent(html) {
   contentDisplay.innerHTML = html;
   Array.from(contentDisplay.querySelectorAll('script')).forEach(old => {
@@ -2423,12 +2378,6 @@ document.getElementById('superGamesLink').addEventListener('click', function(e){
 document.getElementById('operatingsystem').addEventListener('click', function(e){
   e.preventDefault();
   setContent(oslink);
-  hamburger.classList.remove('active');
-  menu.classList.remove('open');
-});
-  document.getElementById('aether').addEventListener('click', function(e){
-  e.preventDefault();
-  setContent(aetherHTML);
   hamburger.classList.remove('active');
   menu.classList.remove('open');
 });
